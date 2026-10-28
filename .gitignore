@@ -1,0 +1,18 @@
+# Python virtual environment
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# Database files
+data/*.db
+data/agent_data.db
+
+# Secrets & environment
+.env
+
+# Pytest & IDE
+.pytest_cache/
+.vscode/
+.idea/
+.DS_Store
