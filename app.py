@@ -31,30 +31,30 @@ with st.sidebar:
     # Active Session Indicator
     if "active_table" in st.session_state:
         st.markdown(f"""
-        <div style="background: rgba(34, 197, 94, 0.1); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 12px; padding: 12px; margin-bottom: 18px;">
+        <div style="background: #ffffff; border: 2px solid #86efac; border-radius: 12px; padding: 12px; margin-bottom: 18px; box-shadow: 0 4px 10px rgba(34, 197, 94, 0.1);">
             <div style="display: flex; align-items: center; gap: 6px;">
-                <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 8px #22c55e;"></span>
-                <span style="font-size: 0.75rem; color: #86efac; text-transform: uppercase; font-weight: 700;">Active Dataset</span>
+                <span style="display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: #16a34a;"></span>
+                <span style="font-size: 0.78rem; color: #15803d; text-transform: uppercase; font-weight: 800;">Active Dataset</span>
             </div>
-            <div style="font-size: 0.85rem; font-weight: 600; color: #f0fdf4; margin-top: 4px; word-break: break-all; font-family: monospace;">
+            <div style="font-size: 0.85rem; font-weight: 700; color: #166534; margin-top: 4px; word-break: break-all; font-family: monospace;">
                 {st.session_state["active_table"]}
             </div>
         </div>
         """, unsafe_allow_html=True)
     else:
         st.markdown("""
-        <div style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.25); border-radius: 12px; padding: 12px; margin-bottom: 18px;">
+        <div style="background: #fffbeb; border: 2px solid #fde68a; border-radius: 12px; padding: 12px; margin-bottom: 18px; box-shadow: 0 4px 10px rgba(245, 158, 11, 0.08);">
             <div style="display: flex; align-items: center; gap: 6px;">
-                <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #f59e0b;"></span>
-                <span style="font-size: 0.75rem; color: #fcd34d; text-transform: uppercase; font-weight: 700;">Engine Standby</span>
+                <span style="display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: #d97706;"></span>
+                <span style="font-size: 0.78rem; color: #b45309; text-transform: uppercase; font-weight: 800;">Engine Standby</span>
             </div>
-            <div style="font-size: 0.8rem; color: #fef3c7; margin-top: 4px;">
+            <div style="font-size: 0.82rem; color: #92400e; font-weight: 700; margin-top: 4px;">
                 No dataset loaded. Ingest via Home or Upload.
             </div>
         </div>
         """, unsafe_allow_html=True)
 
-    st.markdown("<div style='font-size: 0.75rem; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;'>Navigation Workflows</div>", unsafe_allow_html=True)
+    st.markdown("<div style='font-size: 0.75rem; font-weight: 800; color: #9d174d; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;'>Navigation Workflows</div>", unsafe_allow_html=True)
 
     sections = [
         "1. Home",
@@ -69,19 +69,19 @@ with st.sidebar:
 
     selected_section = st.radio("Navigation", sections, label_visibility="collapsed")
 
-    st.markdown("<hr style='border-color: rgba(255, 255, 255, 0.08); margin: 20px 0;'>", unsafe_allow_html=True)
+    st.markdown("<hr style='border-color: #fbcfe8; margin: 20px 0;'>", unsafe_allow_html=True)
     
     st.markdown("""
-    <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 12px; padding: 14px;">
-        <div style="font-size: 0.75rem; font-weight: 700; color: #94a3b8; text-transform: uppercase; margin-bottom: 8px;">System Security</div>
-        <div style="font-size: 0.8rem; color: #cbd5e1; display: flex; align-items: center; gap: 6px; margin-bottom: 4px;">
-            <span style="color: #38bdf8;">✔</span> AST Query Isolation
+    <div style="background: #ffffff; border: 2px solid #fbcfe8; border-radius: 12px; padding: 14px; box-shadow: 0 4px 10px rgba(244, 114, 182, 0.08);">
+        <div style="font-size: 0.78rem; font-weight: 800; color: #9d174d; text-transform: uppercase; margin-bottom: 8px;">System Security</div>
+        <div style="font-size: 0.82rem; color: #701a75; font-weight: 700; display: flex; align-items: center; gap: 6px; margin-bottom: 4px;">
+            <span style="color: #ec4899;">✔</span> AST Query Isolation
         </div>
-        <div style="font-size: 0.8rem; color: #cbd5e1; display: flex; align-items: center; gap: 6px; margin-bottom: 4px;">
-            <span style="color: #38bdf8;">✔</span> 100% Offline Heuristics
+        <div style="font-size: 0.82rem; color: #701a75; font-weight: 700; display: flex; align-items: center; gap: 6px; margin-bottom: 4px;">
+            <span style="color: #ec4899;">✔</span> 100% Offline Heuristics
         </div>
-        <div style="font-size: 0.8rem; color: #cbd5e1; display: flex; align-items: center; gap: 6px;">
-            <span style="color: #38bdf8;">✔</span> Zero SQL Injection
+        <div style="font-size: 0.82rem; color: #701a75; font-weight: 700; display: flex; align-items: center; gap: 6px;">
+            <span style="color: #ec4899;">✔</span> Zero SQL Injection
         </div>
     </div>
     """, unsafe_allow_html=True)
@@ -272,20 +272,54 @@ st.markdown("""
         box-shadow: 0 2px 6px rgba(244, 114, 182, 0.08);
     }
 
-    /* Primary Buttons */
-    div.stButton > button[kind="primary"] {
+    /* Global Buttons High Visibility & Contrast */
+    div.stButton > button {
         background: linear-gradient(135deg, #ec4899 0%, #f43f5e 100%) !important;
         border: none !important;
-        color: white !important;
+        color: #ffffff !important;
         font-weight: 800 !important;
-        border-radius: 14px !important;
-        padding: 12px 26px !important;
-        box-shadow: 0 4px 16px rgba(236, 72, 153, 0.4) !important;
-        transition: all 0.25s ease !important;
+        border-radius: 12px !important;
+        padding: 10px 22px !important;
+        box-shadow: 0 4px 14px rgba(236, 72, 153, 0.35) !important;
+        transition: all 0.2s ease !important;
     }
-    div.stButton > button[kind="primary"]:hover {
+    div.stButton > button p {
+        color: #ffffff !important;
+        font-weight: 800 !important;
+    }
+    div.stButton > button:hover {
         transform: translateY(-2px) scale(1.02) !important;
-        box-shadow: 0 8px 22px rgba(236, 72, 153, 0.5) !important;
+        box-shadow: 0 6px 20px rgba(236, 72, 153, 0.45) !important;
+        background: linear-gradient(135deg, #db2777 0%, #e11d48 100%) !important;
+    }
+    
+    /* File Uploader Custom Styling */
+    div[data-testid="stFileUploader"] section {
+        background: #ffffff !important;
+        border: 2px dashed #f472b6 !important;
+        border-radius: 16px !important;
+        color: #831843 !important;
+    }
+    div[data-testid="stFileUploader"] section button {
+        background: #fdf2f8 !important;
+        border: 1.5px solid #ec4899 !important;
+        color: #db2777 !important;
+        font-weight: 700 !important;
+    }
+    div[data-testid="stFileUploader"] section button p {
+        color: #db2777 !important;
+    }
+    
+    /* Alert Boxes (Info & Warning) Contrast Fix */
+    div[data-testid="stAlert"] {
+        background: #ffffff !important;
+        border: 2px solid #fbcfe8 !important;
+        border-radius: 14px !important;
+        box-shadow: 0 4px 12px rgba(244, 114, 182, 0.1) !important;
+    }
+    div[data-testid="stAlert"] p {
+        color: #831843 !important;
+        font-weight: 700 !important;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -294,7 +328,7 @@ st.markdown("""
 if selected_section == "1. Home" or selected_section == "1. Home & Overview":
     st.markdown("""
     <div class="hero-banner">
-        <div class="hero-tag">🤖 Meet Your Friendly AI Robot Squad 💖</div>
+        <div class="hero-tag">⚡ Autonomous AI Agent Squad 💖</div>
         <div class="hero-title">
             Hi! Welcome to NexusData <br>Your Agentic AI Data Buddy!
         </div>
@@ -309,7 +343,7 @@ if selected_section == "1. Home" or selected_section == "1. Home & Overview":
     <div class="stat-container">
         <div class="stat-box">
             <div class="stat-num">4 🤖</div>
-            <div class="stat-label">Cartoon Robot Agents</div>
+            <div class="stat-label">Specialized Agents</div>
         </div>
         <div class="stat-box">
             <div class="stat-num">&lt; 10ms ⚡</div>
