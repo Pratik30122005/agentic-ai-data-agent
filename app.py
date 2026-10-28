@@ -6,33 +6,85 @@ exploratory data analysis, and automated data quality profiling.
 import streamlit as st
 import os
 
+# Page Configuration
 st.set_page_config(
-    page_title="Agentic AI Data Agent",
-    page_icon="📊",
+    page_title="NexusData | Agentic AI Data Agent",
+    page_icon="⚡",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
-# App Title & Header
-st.sidebar.title("🤖 AI Data Agent")
-st.sidebar.markdown("**Your Intelligent Data Assistant**")
+# Sidebar Premium Styling & Navigation
+with st.sidebar:
+    st.markdown("""
+    <div style="padding: 10px 0 15px 0;">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 6px;">
+            <div style="background: linear-gradient(135deg, #38bdf8, #818cf8); width: 38px; height: 38px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; box-shadow: 0 4px 12px rgba(56, 189, 248, 0.35);">⚡</div>
+            <div>
+                <div style="font-size: 1.35rem; font-weight: 800; background: linear-gradient(90deg, #38bdf8, #818cf8, #c084fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: -0.02em;">NexusData</div>
+                <div style="font-size: 0.72rem; color: #94a3b8; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;">AI Data Agent v1.0</div>
+            </div>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
 
-# Navigation options
-sections = [
-    "1. Home",
-    "2. Upload Dataset",
-    "3. Dataset Explorer",
-    "4. AI Data Assistant",
-    "5. SQL Query Results",
-    "6. Data Quality Report",
-    "7. Analytics Dashboard",
-    "8. Query History"
-]
+    # Active Session Indicator
+    if "active_table" in st.session_state:
+        st.markdown(f"""
+        <div style="background: rgba(34, 197, 94, 0.1); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 12px; padding: 12px; margin-bottom: 18px;">
+            <div style="display: flex; align-items: center; gap: 6px;">
+                <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 8px #22c55e;"></span>
+                <span style="font-size: 0.75rem; color: #86efac; text-transform: uppercase; font-weight: 700;">Active Dataset</span>
+            </div>
+            <div style="font-size: 0.85rem; font-weight: 600; color: #f0fdf4; margin-top: 4px; word-break: break-all; font-family: monospace;">
+                {st.session_state["active_table"]}
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
+    else:
+        st.markdown("""
+        <div style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.25); border-radius: 12px; padding: 12px; margin-bottom: 18px;">
+            <div style="display: flex; align-items: center; gap: 6px;">
+                <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #f59e0b;"></span>
+                <span style="font-size: 0.75rem; color: #fcd34d; text-transform: uppercase; font-weight: 700;">Engine Standby</span>
+            </div>
+            <div style="font-size: 0.8rem; color: #fef3c7; margin-top: 4px;">
+                No dataset loaded. Ingest via Home or Upload.
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
 
-selected_section = st.sidebar.radio("Navigate to:", sections)
+    st.markdown("<div style='font-size: 0.75rem; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;'>Navigation Workflows</div>", unsafe_allow_html=True)
 
-st.sidebar.divider()
-st.sidebar.info("Local Deterministic Mode: **Active**\\n\\nNo external LLM key required.")
+    sections = [
+        "1. Home & Overview",
+        "2. Upload Dataset",
+        "3. Dataset Explorer",
+        "4. AI Data Assistant",
+        "5. SQL Query Studio",
+        "6. Data Quality Report",
+        "7. Analytics Dashboard",
+        "8. Audit Query History"
+    ]
+
+    selected_section = st.radio("Navigation", sections, label_visibility="collapsed")
+
+    st.markdown("<hr style='border-color: rgba(255, 255, 255, 0.08); margin: 20px 0;'>", unsafe_allow_html=True)
+    
+    st.markdown("""
+    <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 12px; padding: 14px;">
+        <div style="font-size: 0.75rem; font-weight: 700; color: #94a3b8; text-transform: uppercase; margin-bottom: 8px;">System Security</div>
+        <div style="font-size: 0.8rem; color: #cbd5e1; display: flex; align-items: center; gap: 6px; margin-bottom: 4px;">
+            <span style="color: #38bdf8;">✔</span> AST Query Isolation
+        </div>
+        <div style="font-size: 0.8rem; color: #cbd5e1; display: flex; align-items: center; gap: 6px; margin-bottom: 4px;">
+            <span style="color: #38bdf8;">✔</span> 100% Offline Heuristics
+        </div>
+        <div style="font-size: 0.8rem; color: #cbd5e1; display: flex; align-items: center; gap: 6px;">
+            <span style="color: #38bdf8;">✔</span> Zero SQL Injection
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
 
 st.markdown("""
 <style>
@@ -43,6 +95,34 @@ st.markdown("""
     }
     code, pre {
         font-family: 'JetBrains Mono', monospace !important;
+    }
+    
+    /* Sidebar Styling */
+    section[data-testid="stSidebar"] {
+        background-color: #0b0f19 !important;
+        border-right: 1px solid rgba(255, 255, 255, 0.08) !important;
+    }
+    section[data-testid="stSidebar"] div[data-testid="stRadio"] > div {
+        gap: 6px;
+    }
+    section[data-testid="stSidebar"] div[data-testid="stRadio"] label {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 10px;
+        padding: 10px 14px;
+        transition: all 0.2s ease;
+        margin-bottom: 2px;
+        cursor: pointer;
+    }
+    section[data-testid="stSidebar"] div[data-testid="stRadio"] label:hover {
+        background: rgba(99, 102, 241, 0.12);
+        border-color: rgba(99, 102, 241, 0.3);
+        transform: translateX(3px);
+    }
+    section[data-testid="stSidebar"] div[data-testid="stRadio"] label[data-checked="true"] {
+        background: linear-gradient(90deg, rgba(56, 189, 248, 0.15), rgba(99, 102, 241, 0.15)) !important;
+        border-color: #38bdf8 !important;
+        box-shadow: 0 0 15px rgba(56, 189, 248, 0.15);
     }
     
     /* Hero Glassmorphism */
