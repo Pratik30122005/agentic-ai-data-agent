@@ -57,14 +57,14 @@ with st.sidebar:
     st.markdown("<div style='font-size: 0.75rem; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;'>Navigation Workflows</div>", unsafe_allow_html=True)
 
     sections = [
-        "1. Home & Overview",
+        "1. Home",
         "2. Upload Dataset",
         "3. Dataset Explorer",
         "4. AI Data Assistant",
-        "5. SQL Query Studio",
+        "5. SQL Query Results",
         "6. Data Quality Report",
         "7. Analytics Dashboard",
-        "8. Audit Query History"
+        "8. Query History"
     ]
 
     selected_section = st.radio("Navigation", sections, label_visibility="collapsed")
@@ -97,82 +97,88 @@ st.markdown("""
         font-family: 'JetBrains Mono', monospace !important;
     }
     
-    /* Sidebar Styling */
+    /* Overall Page Theme - Pastel Pink & Rose */
+    .stApp {
+        background: linear-gradient(135deg, #fff5f7 0%, #fdf2f8 50%, #fce7f3 100%) !important;
+        color: #4a1d34 !important;
+    }
+    
+    /* Sidebar Light Pink Theme */
     section[data-testid="stSidebar"] {
-        background-color: #0b0f19 !important;
-        border-right: 1px solid rgba(255, 255, 255, 0.08) !important;
+        background: linear-gradient(180deg, #fdf2f8 0%, #fbcfe8 100%) !important;
+        border-right: 2px solid #f472b6 !important;
     }
     section[data-testid="stSidebar"] div[data-testid="stRadio"] > div {
-        gap: 6px;
+        gap: 8px;
     }
     section[data-testid="stSidebar"] div[data-testid="stRadio"] label {
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(255, 255, 255, 0.06);
-        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.8);
+        border: 1.5px solid #f9a8d4;
+        border-radius: 14px;
         padding: 10px 14px;
         transition: all 0.2s ease;
         margin-bottom: 2px;
         cursor: pointer;
+        color: #831843 !important;
+        font-weight: 700;
+        box-shadow: 0 2px 6px rgba(244, 114, 182, 0.1);
     }
     section[data-testid="stSidebar"] div[data-testid="stRadio"] label:hover {
-        background: rgba(99, 102, 241, 0.12);
-        border-color: rgba(99, 102, 241, 0.3);
-        transform: translateX(3px);
+        background: #ffffff;
+        border-color: #ec4899;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(236, 72, 153, 0.2);
     }
     section[data-testid="stSidebar"] div[data-testid="stRadio"] label[data-checked="true"] {
-        background: linear-gradient(90deg, rgba(56, 189, 248, 0.15), rgba(99, 102, 241, 0.15)) !important;
-        border-color: #38bdf8 !important;
-        box-shadow: 0 0 15px rgba(56, 189, 248, 0.15);
+        background: linear-gradient(90deg, #ec4899, #f43f5e) !important;
+        border-color: #db2777 !important;
+        box-shadow: 0 4px 14px rgba(236, 72, 153, 0.35);
+    }
+    section[data-testid="stSidebar"] div[data-testid="stRadio"] label[data-checked="true"] p {
+        color: #ffffff !important;
+        font-weight: 800;
     }
     
-    /* Hero Glassmorphism */
+    /* Hero Banner Cute Pink */
     .hero-banner {
-        background: radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.18) 0%, transparent 40%),
-                    radial-gradient(circle at 90% 80%, rgba(56, 189, 248, 0.18) 0%, transparent 40%),
-                    linear-gradient(135deg, #090d16 0%, #111827 50%, #090d16 100%);
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        border-radius: 24px;
-        padding: 44px;
+        background: linear-gradient(135deg, #ffffff 0%, #fff1f2 50%, #ffe4e6 100%);
+        border: 2px solid #fbcfe8;
+        border-radius: 28px;
+        padding: 40px 48px;
         margin-bottom: 28px;
-        box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7);
-        position: relative;
+        box-shadow: 0 16px 36px rgba(244, 114, 182, 0.16);
     }
     .hero-tag {
         display: inline-flex;
         align-items: center;
         gap: 6px;
-        background: rgba(99, 102, 241, 0.15);
-        border: 1px solid rgba(99, 102, 241, 0.35);
-        color: #a5b4fc;
-        padding: 6px 14px;
+        background: #fce7f3;
+        border: 1.5px solid #f472b6;
+        color: #be185d;
+        padding: 6px 16px;
         border-radius: 9999px;
-        font-size: 0.8rem;
-        font-weight: 700;
+        font-size: 0.82rem;
+        font-weight: 800;
         letter-spacing: 0.05em;
         text-transform: uppercase;
-        margin-bottom: 16px;
+        margin-bottom: 14px;
     }
     .hero-title {
-        font-size: 2.9rem;
+        font-size: 2.8rem;
         font-weight: 800;
-        background: linear-gradient(135deg, #ffffff 20%, #94a3b8 100%);
+        background: linear-gradient(90deg, #db2777 0%, #e11d48 50%, #f43f5e 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        line-height: 1.15;
-        margin-bottom: 14px;
-        letter-spacing: -0.03em;
-    }
-    .hero-accent {
-        background: linear-gradient(90deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        line-height: 1.2;
+        margin-bottom: 12px;
+        letter-spacing: -0.02em;
     }
     .hero-sub {
-        font-size: 1.12rem;
-        color: #94a3b8;
-        line-height: 1.6;
-        max-width: 820px;
-        margin-bottom: 24px;
+        font-size: 1.15rem;
+        color: #701a75;
+        line-height: 1.65;
+        max-width: 840px;
+        font-weight: 600;
     }
     
     /* Stats Bar */
@@ -183,83 +189,70 @@ st.markdown("""
         margin-bottom: 30px;
     }
     .stat-box {
-        background: rgba(17, 24, 39, 0.7);
-        border: 1px solid rgba(255, 255, 255, 0.07);
-        border-radius: 16px;
+        background: #ffffff;
+        border: 2px solid #fce7f3;
+        border-radius: 18px;
         padding: 18px 22px;
-        backdrop-filter: blur(8px);
+        text-align: center;
+        box-shadow: 0 6px 16px rgba(244, 114, 182, 0.1);
     }
     .stat-num {
         font-size: 1.8rem;
         font-weight: 800;
-        color: #38bdf8;
-        letter-spacing: -0.02em;
+        color: #e11d48;
     }
     .stat-label {
         font-size: 0.82rem;
-        color: #94a3b8;
-        font-weight: 600;
+        color: #9d174d;
+        font-weight: 700;
         text-transform: uppercase;
-        letter-spacing: 0.04em;
         margin-top: 2px;
     }
     
-    /* Feature Cards */
-    .feature-card {
-        background: rgba(17, 24, 39, 0.65);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 18px;
+    /* Robot Agent Cards */
+    .robot-card {
+        background: #ffffff;
+        border: 2px solid #fbcfe8;
+        border-radius: 24px;
         padding: 26px;
-        height: 100%;
-        transition: all 0.25s ease;
-        position: relative;
-        overflow: hidden;
-    }
-    .feature-card:hover {
-        transform: translateY(-5px);
-        border-color: rgba(99, 102, 241, 0.5);
-        box-shadow: 0 15px 30px -10px rgba(99, 102, 241, 0.2);
-    }
-    .feature-icon-wrapper {
-        width: 48px;
-        height: 48px;
-        border-radius: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.5rem;
-        margin-bottom: 16px;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    .feature-badge {
-        font-size: 0.75rem;
-        font-weight: 700;
-        padding: 3px 8px;
-        border-radius: 6px;
-        display: inline-block;
-        margin-top: 14px;
-    }
-    
-    /* Workflow Step Cards */
-    .step-card {
-        background: rgba(15, 23, 42, 0.6);
-        border: 1px dashed rgba(255, 255, 255, 0.15);
-        border-radius: 14px;
-        padding: 20px;
         text-align: center;
+        transition: all 0.3s ease;
+        box-shadow: 0 8px 22px rgba(244, 114, 182, 0.1);
+        height: 100%;
     }
-    .step-num {
-        display: inline-block;
-        width: 28px;
-        height: 28px;
-        line-height: 28px;
-        background: #38bdf8;
-        color: #0f172a;
-        font-weight: 800;
-        border-radius: 50%;
+    .robot-card:hover {
+        transform: translateY(-6px);
+        border-color: #ec4899;
+        box-shadow: 0 16px 32px rgba(236, 72, 153, 0.24);
+    }
+    .robot-avatar {
+        font-size: 3.2rem;
         margin-bottom: 10px;
-        font-size: 0.85rem;
+        display: inline-block;
+        filter: drop-shadow(0 4px 8px rgba(244, 114, 182, 0.3));
+    }
+    .robot-name {
+        font-size: 1.25rem;
+        font-weight: 800;
+        color: #9d174d;
+        margin-bottom: 6px;
+    }
+    .robot-badge {
+        font-size: 0.75rem;
+        font-weight: 800;
+        background: #fdf2f8;
+        color: #db2777;
+        padding: 4px 12px;
+        border-radius: 12px;
+        display: inline-block;
+        margin-bottom: 12px;
+        border: 1px solid #fbcfe8;
+    }
+    .robot-desc {
+        font-size: 0.92rem;
+        color: #64748b;
+        line-height: 1.55;
+        font-weight: 600;
     }
     
     /* Tech Stack Pills */
@@ -267,29 +260,46 @@ st.markdown("""
         display: inline-flex;
         align-items: center;
         gap: 6px;
-        background: rgba(255, 255, 255, 0.04);
-        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: #ffffff;
+        border: 1.5px solid #fbcfe8;
         padding: 6px 14px;
-        border-radius: 8px;
+        border-radius: 9999px;
         font-size: 0.85rem;
-        color: #cbd5e1;
-        font-weight: 600;
+        color: #9d174d;
+        font-weight: 700;
         margin-right: 8px;
         margin-bottom: 8px;
+        box-shadow: 0 2px 6px rgba(244, 114, 182, 0.08);
+    }
+
+    /* Primary Buttons */
+    div.stButton > button[kind="primary"] {
+        background: linear-gradient(135deg, #ec4899 0%, #f43f5e 100%) !important;
+        border: none !important;
+        color: white !important;
+        font-weight: 800 !important;
+        border-radius: 14px !important;
+        padding: 12px 26px !important;
+        box-shadow: 0 4px 16px rgba(236, 72, 153, 0.4) !important;
+        transition: all 0.25s ease !important;
+    }
+    div.stButton > button[kind="primary"]:hover {
+        transform: translateY(-2px) scale(1.02) !important;
+        box-shadow: 0 8px 22px rgba(236, 72, 153, 0.5) !important;
     }
 </style>
 """, unsafe_allow_html=True)
 
 # Section 1: Home
-if selected_section == "1. Home":
+if selected_section == "1. Home" or selected_section == "1. Home & Overview":
     st.markdown("""
     <div class="hero-banner">
-        <div class="hero-tag">⚡ Autonomous Multi-Agent Data Assistant</div>
+        <div class="hero-tag">🤖 Meet Your Friendly AI Robot Squad 💖</div>
         <div class="hero-title">
-            Enterprise Data Intelligence, <br><span class="hero-accent">Democratized & Secured.</span>
+            Hi! Welcome to NexusData <br>Your Agentic AI Data Buddy!
         </div>
         <div class="hero-sub">
-            NexusData is a production-grade agentic data platform for software & data engineering placements. Ingest arbitrary CSVs, translate natural questions into audited AST-validated SQL, detect statistical anomalies, and explore distributions — <b>100% offline with zero external cloud dependencies.</b>
+            I turn messy CSV datasets into clean SQL queries, delightful chart visualizations, and deep statistical reports. Built with 100% offline deterministic heuristics — no paid APIs, no servers, zero hallucination, completely student-built & placement ready!
         </div>
     </div>
     """, unsafe_allow_html=True)
@@ -298,60 +308,63 @@ if selected_section == "1. Home":
     st.markdown("""
     <div class="stat-container">
         <div class="stat-box">
-            <div class="stat-num">4 Agents</div>
-            <div class="stat-label">Autonomous Swarm</div>
+            <div class="stat-num">4 🤖</div>
+            <div class="stat-label">Cartoon Robot Agents</div>
         </div>
         <div class="stat-box">
-            <div class="stat-num">&lt; 15ms</div>
-            <div class="stat-label">Avg Intent Latency</div>
+            <div class="stat-num">&lt; 10ms ⚡</div>
+            <div class="stat-label">Fast Routing Latency</div>
         </div>
         <div class="stat-box">
-            <div class="stat-num">AST-Level</div>
+            <div class="stat-num">100% 🛡️</div>
             <div class="stat-label">SQL Injection Guard</div>
         </div>
         <div class="stat-box">
-            <div class="stat-num">100% Safe</div>
-            <div class="stat-label">Deterministic & Offline</div>
+            <div class="stat-num">0 $ 🌸</div>
+            <div class="stat-label">Free & Offline Local Engine</div>
         </div>
     </div>
     """, unsafe_allow_html=True)
 
     # Agent Swarm Cards
-    st.markdown("### 🤖 Specialized Autonomous Agent Swarm")
-    st.markdown("Incoming requests are parsed by the **Deterministic Intent Classifier** and dynamically routed to the ideal agent:")
+    st.markdown("### 🤖 Meet Your Special Robot Buddies")
+    st.markdown("Your questions are classified and routed to the most qualified robot helper:")
     
-    c1, c2, c3 = st.columns(3)
+    c1, c2, c3, c4 = st.columns(4)
     with c1:
         st.markdown("""
-        <div class="feature-card">
-            <div class="feature-icon-wrapper" style="border-color: rgba(56, 189, 248, 0.4); color: #38bdf8;">🛡️</div>
-            <div style="font-weight: 800; font-size: 1.2rem; color: #f8fafc; margin-bottom: 6px;">SQL Analyst</div>
-            <div style="font-size: 0.92rem; color: #94a3b8; line-height: 1.55;">
-                Translates questions into optimized SELECT queries. Every query is inspected via abstract syntax tree (AST) token parsing, blocking destructive operations (DROP, INSERT, multi-statements).
-            </div>
-            <span class="feature-badge" style="background: rgba(56, 189, 248, 0.15); color: #7dd3fc;">AST Parser • SQL Injection Proof</span>
+        <div class="robot-card">
+            <div class="robot-avatar">🤖⚡</div>
+            <div class="robot-name">Router Bot</div>
+            <div class="robot-badge">Intent Classifier</div>
+            <div class="robot-desc">Listens to your question in plain English and dispatches the perfect robot buddy for the job!</div>
         </div>
         """, unsafe_allow_html=True)
     with c2:
         st.markdown("""
-        <div class="feature-card">
-            <div class="feature-icon-wrapper" style="border-color: rgba(129, 140, 248, 0.4); color: #818cf8;">📊</div>
-            <div style="font-weight: 800; font-size: 1.2rem; color: #f8fafc; margin-bottom: 6px;">Data Analyst</div>
-            <div style="font-size: 0.92rem; color: #94a3b8; line-height: 1.55;">
-                Extracts descriptive statistics, computes Pearson correlation matrices, executes multidimensional group-bys, and outputs dynamic visualization charts.
-            </div>
-            <span class="feature-badge" style="background: rgba(129, 140, 248, 0.15); color: #a5b4fc;">Pandas Vectorized • Pearson Heatmap</span>
+        <div class="robot-card">
+            <div class="robot-avatar">🛡️👾</div>
+            <div class="robot-name">SQL Bot</div>
+            <div class="robot-badge">Database Specialist</div>
+            <div class="robot-desc">Generates read-only SELECT queries with AST token isolation to prevent any database tampering!</div>
         </div>
         """, unsafe_allow_html=True)
     with c3:
         st.markdown("""
-        <div class="feature-card">
-            <div class="feature-icon-wrapper" style="border-color: rgba(192, 132, 252, 0.4); color: #c084fc;">🧪</div>
-            <div style="font-weight: 800; font-size: 1.2rem; color: #f8fafc; margin-bottom: 6px;">Quality Analyst</div>
-            <div style="font-size: 0.92rem; color: #94a3b8; line-height: 1.55;">
-                Audits structural integrity by uncovering missing values, duplicate rows, high-cardinality primary keys, and statistical outliers using the Interquartile Range (IQR) method.
-            </div>
-            <span class="feature-badge" style="background: rgba(192, 132, 252, 0.15); color: #d8b4fe;">IQR Outlier Detection • Null Profiler</span>
+        <div class="robot-card">
+            <div class="robot-avatar">📊🎨</div>
+            <div class="robot-name">Analyst Bot</div>
+            <div class="robot-badge">Stats & Charts Guru</div>
+            <div class="robot-desc">Computes means, medians, correlation heatmaps, and draws beautiful dynamic visualizations!</div>
+        </div>
+        """, unsafe_allow_html=True)
+    with c4:
+        st.markdown("""
+        <div class="robot-card">
+            <div class="robot-avatar">🧪🔍</div>
+            <div class="robot-name">Quality Bot</div>
+            <div class="robot-badge">Dataset Doctor</div>
+            <div class="robot-desc">Detects missing values, duplicate records, and spots crazy statistical outliers using IQR math!</div>
         </div>
         """, unsafe_allow_html=True)
 
