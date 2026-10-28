@@ -1,4 +1,11 @@
-# Agentic AI Data Agent 📊🤖
+# NexusData: Agentic AI Data Agent 📊🤖💖
+
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://agentic-ai-data-agent-wv4ksilhvvhggsuomvdnwg.streamlit.app/)
+[![GitHub Repo](https://img.shields.io/badge/GitHub-Repository-blue?logo=github)](https://github.com/Pratik30122005/agentic-ai-data-agent)
+[![Python 3.13](https://img.shields.io/badge/Python-3.13-pink?logo=python)](https://python.org)
+
+> 🚀 **LIVE DEMO**: [https://agentic-ai-data-agent-wv4ksilhvvhggsuomvdnwg.streamlit.app/](https://agentic-ai-data-agent-wv4ksilhvvhggsuomvdnwg.streamlit.app/)  
+> *(Accessible 24/7 from any smartphone, tablet, or PC worldwide!)*
 
 A production-grade, extensible AI Data Assistant that lets users upload CSV datasets, ask questions in plain English, execute safe read-only SQL queries, perform exploratory data analysis, and run automated data quality audits.
 
