@@ -34,25 +34,115 @@ selected_section = st.sidebar.radio("Navigate to:", sections)
 st.sidebar.divider()
 st.sidebar.info("Local Deterministic Mode: **Active**\\n\\nNo external LLM key required.")
 
+st.markdown("""
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+    html, body, [class*="css"] {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .hero-banner {
+        background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 20px;
+        padding: 40px;
+        margin-bottom: 25px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+    .hero-title {
+        font-size: 2.6rem;
+        font-weight: 800;
+        background: linear-gradient(90deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 12px;
+        letter-spacing: -0.5px;
+    }
+    .hero-sub {
+        font-size: 1.1rem;
+        color: #94a3b8;
+        line-height: 1.6;
+        max-width: 800px;
+    }
+    .feature-card {
+        background: rgba(30, 41, 59, 0.55);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 16px;
+        padding: 24px;
+        height: 100%;
+        transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .feature-card:hover {
+        transform: translateY(-4px);
+        border-color: rgba(99, 102, 241, 0.5);
+    }
+    .badge-pill {
+        display: inline-block;
+        background: rgba(99, 102, 241, 0.2);
+        border: 1px solid rgba(99, 102, 241, 0.4);
+        color: #a5b4fc;
+        padding: 5px 14px;
+        border-radius: 20px;
+        font-size: 0.82rem;
+        font-weight: 600;
+        margin-top: 14px;
+    }
+</style>
+""", unsafe_allow_html=True)
+
 # Section 1: Home
 if selected_section == "1. Home":
-    st.title("📊 Agentic AI Data Agent")
     st.markdown("""
-    Welcome to the **Agentic AI Data Agent**! This application is designed to act as your pair data engineer,
-    SQL specialist, and data analyst.
+    <div class="hero-banner">
+        <div class="hero-title">⚡ NexusData: Autonomous AI Data Agent</div>
+        <div class="hero-sub">
+            Your high-performance pair data engineer and intelligence platform. Upload CSVs, pose questions in natural English, run secure SQL queries, spot data quality issues, and generate statistical distributions — 100% offline with zero API keys required.
+        </div>
+        <div class="badge-pill">Autonomous Router • Read-Only AST SQL Security • Persistent SQLite</div>
+    </div>
+    """, unsafe_allow_html=True)
     
-    ### 🚀 Key Capabilities
-    - **Dataset Ingestion**: Safe CSV validation and SQLite persistent caching.
-    - **Intent-Based Routing**: Automatically routes natural queries to the correct specialized agent:
-        - `SQL_ANALYST`: Generates and safely validates SELECT queries.
-        - `DATA_ANALYST`: Computes distributions, aggregations, correlations, and visualizations.
-        - `DATA_QUALITY_ANALYST`: Detects missing values, duplicates, anomaly indicators, and data type issues.
-        - `GENERAL_HELP`: Guidance on system architecture and query syntax.
-    - **Multi-layered Security**: Whitelisted read-only SQL parser, AST inspection, and query timeouts.
-    - **Zero Paid Dependencies**: Comes with a fully offline deterministic engine.
-    
-    👈 Use the sidebar navigation to get started by uploading a dataset or exploring the synthetic sample data!
-    """)
+    st.markdown("### 🤖 Specialized Agent Swarm")
+    c1, c2, c3 = st.columns(3)
+    with c1:
+        st.markdown("""
+        <div class="feature-card">
+            <div style="font-size: 2rem; margin-bottom: 8px;">🛡️</div>
+            <div style="font-weight: 700; font-size: 1.15rem; color: #f8fafc; margin-bottom: 6px;">SQL Analyst Agent</div>
+            <div style="font-size: 0.9rem; color: #94a3b8; line-height: 1.5;">Translates natural queries into strict, read-only SELECT queries with AST token parsing and injection prevention.</div>
+        </div>
+        """, unsafe_allow_html=True)
+    with c2:
+        st.markdown("""
+        <div class="feature-card">
+            <div style="font-size: 2rem; margin-bottom: 8px;">📈</div>
+            <div style="font-weight: 700; font-size: 1.15rem; color: #f8fafc; margin-bottom: 6px;">Data Analyst Agent</div>
+            <div style="font-size: 0.9rem; color: #94a3b8; line-height: 1.5;">Calculates descriptive statistics, group-by aggregations, Pearson correlation matrices, and dynamic visualizations.</div>
+        </div>
+        """, unsafe_allow_html=True)
+    with c3:
+        st.markdown("""
+        <div class="feature-card">
+            <div style="font-size: 2rem; margin-bottom: 8px;">🧪</div>
+            <div style="font-weight: 700; font-size: 1.15rem; color: #f8fafc; margin-bottom: 6px;">Data Quality Agent</div>
+            <div style="font-size: 0.9rem; color: #94a3b8; line-height: 1.5;">Detects missing values, duplicate rows, high-cardinality IDs, and IQR numerical outliers automatically.</div>
+        </div>
+        """, unsafe_allow_html=True)
+        
+    st.markdown("<br>", unsafe_allow_html=True)
+    col_btn, _ = st.columns([1, 3])
+    with col_btn:
+        if st.button("🚀 Load Synthetic Spotify Dataset", type="primary", use_container_width=True):
+            from services.data_loader import DataLoaderService
+            from core.database import DatabaseManager
+            db = DatabaseManager()
+            loader = DataLoaderService(db)
+            sample_path = "data/sample_spotify.csv"
+            if os.path.exists(sample_path):
+                with open(sample_path, "rb") as f:
+                    table_name, profile = loader.ingest_csv(f.read(), "sample_spotify.csv")
+                    st.session_state["active_table"] = table_name
+                    st.session_state["active_profile"] = profile
+                    st.success(f"Loaded `{table_name}`! You can now navigate to '4. AI Data Assistant'.")
 
 # Section 2: Upload Dataset
 elif selected_section == "2. Upload Dataset":
